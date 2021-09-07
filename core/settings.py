@@ -13,8 +13,7 @@ SECRET_KEY = 'django-insecure-*=_xu58%^s(e)$(l&-+jt01tcb-=2c&f+0+y#+%*a&(1q4-mje
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -28,11 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third party.
     "graphene_django",
+    'corsheaders',
     # Apps.
     'backend',
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -120,3 +121,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GRAPHENE = {
     "SCHEMA": "backend.schema.schema"
 }
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost'
+]
+
+CSRF_TRUSTED_ORIGINS = ['localhost:3000']
